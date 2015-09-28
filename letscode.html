@@ -1,0 +1,91 @@
+<html>
+
+<head>
+	<title>Lets code in our editor!</title>
+</head>
+
+<script type="text/javascript">
+
+	/*$('#coderForm').submit(function (event) {
+	    event.preventDefault();
+	    console.log('submitting post request!');
+	    $.ajax({
+	        url: '/newcoder',
+	        type: 'post',
+	        data: $('#coderForm').serialize(),
+	        success: function (response, textStatus, jqXHR) {
+	            console.log("ajax success");
+	            console.log("response: " + response);
+	            $('#name').html(response.toString());
+	        },
+	        error: function (jqXHR, textStatus, errorThrown) {
+	            console.log('error(s):' + textStatus, errorThrown);
+	        }
+	    });
+	});*/
+
+    /*$(document).ready(function(){
+    	$('#submit').click(function (e){
+	    		e.preventDefault();
+	    		console.log('start ajax call');
+	    		var data = $('#name').value;
+	    		console.log(data);
+    		
+    		$.post("http://localhost:5420/newcoder", {javacode: "import ;"}, function(data){
+    			if(data=='done'){
+    				alert('compilation success');
+    			}
+    		});
+    	
+			/*$.ajax({
+				type: 'post',
+				url: 'http://localhost:5420/newcoder',
+				data: JSON.stringify(data),
+				contentType: "application/json"
+				success: function(data){
+					console.log('ajax success');
+					console.log(String(data));
+				}coderForm
+			});*/
+
+	/*	});
+    });*/
+
+	$(document).ready(function() {
+	    $.ajax({
+	        url: 'http://localhost:5420/newcoder',
+	        // dataType: "jsonp",
+	        data: '{"data": "TEST"}',
+	        type: 'POST',
+	        jsonpCallback: 'callback', // this is not relevant to the POST anymore
+	        success: function (data) {
+	            var ret = jQuery.parseJSON(data);
+	            $('#lblResponse').html(ret.msg);
+	            console.log('Success: ')
+	        },
+	        error: function (xhr, status, error) {
+	            console.log('Error: ' + error.message);
+	            $('#lblResponse').html('Error connecting to the server.');
+	        },
+	    });
+	});
+
+
+
+</script
+
+
+	<p>Enter Java Code!!</p>
+	<form id="coderForm">
+	<body>
+		<fieldset>
+
+            <textarea id="name" name="name" placeholder="Enter your java code!!" rows="30" cols="50"></textarea>
+
+            <input id="submit" name="submit" type="submit" />
+
+        </fieldset>
+        response here: <p id="lblResponse">fill me in</p>
+    </body>
+	</form>
+</html>
